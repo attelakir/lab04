@@ -17,14 +17,14 @@ sudo: true
 
 addons:
     apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    - llvm-toolchain-precise-3.7
-    packages:
-    - cmake
-    - cmake-data
-    - clang-3.7
-    - g++-7
+         sources:
+          - ubuntu-toolchain-r-test
+          - llvm-toolchain-precise-3.7
+         packages:
+          - cmake
+          - cmake-data
+          - clang-3.7
+          - g++-7
 
 script:
 - cd hello_world_application
@@ -43,21 +43,20 @@ script:
 - if [ "$TRAVIS_OS_NAME" = "osx" ]; then cpack -G DragNDrop  ;fi
 - if [ "$TRAVIS_OS_NAME" = "linux" ]; then cpack -G DEB  ;fi
 #- if [ "$TRAVIS_OS_NAME" = "linux" ]; then cpack -G RPM  ;fi
-
 deploy:
- provider: releases
- 
- api_key: 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 
- 
- file_glob: true
- 	file:
+    provider: releases
+
+    api_key: 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
+    
+    file_glob: true
+    file:
       - solver_application/_build/solver-source-files.zip
       - solver_application/_build/solver-source-files.tar.gz
       - if [ "$TRAVIS_OS_NAME" = "osx" ]; then 'solver_application/_build/solver.dmg'  ;fi
  #     - if [ "$TRAVIS_OS_NAME" = "linux" ]; then 'solver_application/_build/solver.rpm'  ;fi
       - if [ "$TRAVIS_OS_NAME" = "linux" ]; then 'solver_application/_build/solver.deb'  ;fi
-      
- skip_cleanup: 'true'
- 
- on:
-  tags: true
+    
+    skip_cleanup: true
+    
+    on:
+        tags: true
