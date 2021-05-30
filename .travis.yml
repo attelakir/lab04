@@ -19,14 +19,13 @@ addons:
     apt:
     sources:
     - ubuntu-toolchain-r-test
-          - llvm-toolchain-precise-3.7
+    - llvm-toolchain-precise-3.7
     packages:
-        - cmake
-        - cmake-data
-        - clang-3.7
-        - g++-7
-        - rpm
-script:
+    - cmake
+    - cmake-data
+    - clang-3.7
+    - g++-7
+
 script:
 - cd hello_world_application
 - cmake -H. -B_build
@@ -48,11 +47,10 @@ script:
 deploy:
  provider: releases
  
- api_key: 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
+ api_key: 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 
  
  file_glob: true
- 
-        file:
+ 	file:
       - solver_application/_build/solver-source-files.zip
       - solver_application/_build/solver-source-files.tar.gz
       - if [ "$TRAVIS_OS_NAME" = "osx" ]; then 'solver_application/_build/solver.dmg'  ;fi
